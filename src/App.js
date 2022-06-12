@@ -1,5 +1,13 @@
+import PageHeader from "./components/page-header/PageHeader";
+import MainContainer from "./components/main-container/MainContainer";
+
 const App = () => {
-    return <h1>Hello world!</h1>;
+    return (
+        <>
+            <PageHeader/>
+            <MainContainer/>
+        </>
+    );
 };
 
 export default App;
