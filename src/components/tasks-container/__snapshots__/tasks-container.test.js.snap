@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskContainer renders correctly 1`] = `
+<div>
+  <div
+    className="task-container small-container"
+  >
+    <input
+      checked={false}
+      className="task-status-element"
+      id="task0"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className=""
+      htmlFor="task0"
+    >
+      Тестовое задание
+    </label>
+  </div>
+  <div
+    className="task-container small-container"
+  >
+    <input
+      checked={true}
+      className="task-status-element"
+      id="task1"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className="task-text-finished"
+      htmlFor="task1"
+    >
+      Прекрасный код
+    </label>
+  </div>
+  <div
+    className="task-container small-container"
+  >
+    <input
+      checked={false}
+      className="task-status-element"
+      id="task2"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className=""
+      htmlFor="task2"
+    >
+      Покрытие тестами
+    </label>
+  </div>
+</div>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task renders correctly 1`] = `
+<div
+  className="task-container small-container"
+>
+  <input
+    className="task-status-element"
+    id="taskundefined"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <label
+    className=""
+    htmlFor="taskundefined"
+  />
+</div>
+`;

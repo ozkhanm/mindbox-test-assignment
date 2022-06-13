@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form renders correctly 1`] = `
+<div
+  className="input-wrapper"
+>
+  <input
+    className="input small-container"
+    onKeyDown={[Function]}
+    placeholder="What needs to be done?"
+    type="text"
+  />
+  <div>
+    <div
+      className="task-container small-container"
+    >
+      <input
+        checked={false}
+        className="task-status-element"
+        id="task0"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className=""
+        htmlFor="task0"
+      >
+        Тестовое задание
+      </label>
+    </div>
+    <div
+      className="task-container small-container"
+    >
+      <input
+        checked={true}
+        className="task-status-element"
+        id="task1"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="task-text-finished"
+        htmlFor="task1"
+      >
+        Прекрасный код
+      </label>
+    </div>
+    <div
+      className="task-container small-container"
+    >
+      <input
+        checked={false}
+        className="task-status-element"
+        id="task2"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className=""
+        htmlFor="task2"
+      >
+        Покрытие тестами
+      </label>
+    </div>
+  </div>
+  <div
+    className="tasks-control-panel-wrapper"
+  >
+    <p>
+      2
+       items left
+    </p>
+    <div
+      className="tasks-filter-controls"
+    >
+      <input
+        checked={true}
+        id="radio-all"
+        name="1"
+        onChange={[Function]}
+        type="radio"
+        value="all"
+      />
+      <label
+        htmlFor="radio-all"
+      >
+        All
+      </label>
+      <input
+        checked={false}
+        id="radio-active"
+        name="1"
+        onChange={[Function]}
+        type="radio"
+        value="active"
+      />
+      <label
+        htmlFor="radio-active"
+      >
+        Active
+      </label>
+      <input
+        checked={false}
+        id="radio-completed"
+        name="1"
+        onChange={[Function]}
+        type="radio"
+        value="completed"
+      />
+      <label
+        htmlFor="radio-completed"
+      >
+        Completed
+      </label>
+    </div>
+    <div>
+      <button
+        className="clear-completed-button"
+        onClick={[Function]}
+        type="button"
+      >
+        Clear completed
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageHeader renders correctly 1`] = `
+<div
+  className="tasks-control-panel-wrapper"
+>
+  <p>
+     items left
+  </p>
+  <div
+    className="tasks-filter-controls"
+  >
+    <input
+      checked={false}
+      id="radio-all"
+      name="1"
+      type="radio"
+      value="all"
+    />
+    <label
+      htmlFor="radio-all"
+    >
+      All
+    </label>
+    <input
+      checked={false}
+      id="radio-active"
+      name="1"
+      type="radio"
+      value="active"
+    />
+    <label
+      htmlFor="radio-active"
+    >
+      Active
+    </label>
+    <input
+      checked={false}
+      id="radio-completed"
+      name="1"
+      type="radio"
+      value="completed"
+    />
+    <label
+      htmlFor="radio-completed"
+    >
+      Completed
+    </label>
+  </div>
+  <div>
+    <button
+      className="clear-completed-button"
+      type="button"
+    >
+      Clear completed
+    </button>
+  </div>
+</div>
+`;
