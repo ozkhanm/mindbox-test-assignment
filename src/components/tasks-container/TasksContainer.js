@@ -1,9 +1,6 @@
 import Task from "../task/Task";
-import TasksControlPanel from "../tasks-control-panel/TasksControlPanel";
 
-const TasksContainer = ({tasks, activeTasks, activeFilterName, taskFinishButtonClickHandler, 
-    filterButtonClickHandler, clearCompletedButtonClickHandler}) => {
-
+const TasksContainer = ({tasks, taskFinishButtonClickHandler}) => {
     return (
         <div>
             {tasks.map((it) => <Task key={it.id} 
@@ -11,10 +8,6 @@ const TasksContainer = ({tasks, activeTasks, activeFilterName, taskFinishButtonC
                 taskStatus={it.isFinished} 
                 taskFinishButtonClickHandler={taskFinishButtonClickHandler} 
                 id={it.id} />)}
-            <TasksControlPanel tasksNumber={activeTasks} 
-                activeFilterName={activeFilterName} 
-                filterButtonClickHandler={filterButtonClickHandler}
-                clearCompletedButtonClickHandler={clearCompletedButtonClickHandler} />
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import TasksContainer from "../tasks-container/TasksContainer";
+import TasksControlPanel from "../tasks-control-panel/TasksControlPanel";
 
 const Form = () => {
     const [activeFilterName, setActiveFilterName] = useState(`all`);
@@ -55,6 +56,9 @@ const Form = () => {
                 setActiveFilterName(`completed`);
 
                 break;
+
+            default:
+                setActiveFilterName(`all`);
         };
     };
 
@@ -67,7 +71,7 @@ const Form = () => {
         const ENTER_BUTTON_KEYCODE = 13;
 
         if ((evt.keyCode === ENTER_BUTTON_KEYCODE) && (taskText.length !== 0)) {
-            const maxTaskId = Math.max.apply(null, tasks.map((it) => it.id));
+            const maxTaskId = Math.max.apply(null, tasks.map((it) => it.id)) ^ 0;
             const newTask = {
                 text: taskText,
                 isFinished: false,
@@ -97,17 +101,23 @@ const Form = () => {
 
             case `completed`:
                 return tasks.filter((it) => it.isFinished === true);
+
+            default:
+                return tasks;
         };
     };
     
     return (
         <div className="input-wrapper">
-            <button className="expand-button" type="button" />
-            <input className="input" type="text" placeholder="What needs to be done?" onKeyDown={taskSubmitButtonClickHandler}/>
+            <input className="input small-container" type="text" placeholder="What needs to be done?" onKeyDown={taskSubmitButtonClickHandler}/>
             <TasksContainer tasks={getTasks(activeFilterName)}
                 activeTasks={activeTasks} 
                 activeFilterName={activeFilterName} 
                 taskFinishButtonClickHandler={taskFinishButtonClickHandler} 
+                filterButtonClickHandler={filterButtonClickHandler}
+                clearCompletedButtonClickHandler={clearCompletedButtonClickHandler} />
+            <TasksControlPanel tasksNumber={activeTasks} 
+                activeFilterName={activeFilterName} 
                 filterButtonClickHandler={filterButtonClickHandler}
                 clearCompletedButtonClickHandler={clearCompletedButtonClickHandler} />
         </div>
