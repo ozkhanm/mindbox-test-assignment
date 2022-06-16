@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import TasksContainer from "./TasksContainer";
 
-it(`TaskContainer renders correctly`, () => {
+it(`TasksContainer renders correctly`, () => {
     const tasks = [
         {
             text: "Тестовое задание",

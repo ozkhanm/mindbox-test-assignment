@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import Task from "./Task";
 
-it(`Task renders correctly`, () => {
+it(`Task component renders correctly`, () => {
     const tree = renderer
         .create(<Task />)
         .toJSON();

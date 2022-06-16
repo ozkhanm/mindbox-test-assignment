@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 
 import TasksControlPanel from "./TasksControlPanel";
 
-it(`PageHeader renders correctly`, () => {
+it(`TasksControlPanel renders correctly`, () => {
     const tree = renderer
         .create(<TasksControlPanel />)
         .toJSON();
