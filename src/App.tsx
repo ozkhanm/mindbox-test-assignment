@@ -4,8 +4,8 @@ import MainContainer from "./components/main-container/MainContainer";
 const App = () => {
     return (
         <>
-            <PageHeader/>
-            <MainContainer/>
+            <PageHeader />
+            <MainContainer />
         </>
     );
 };

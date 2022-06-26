@@ -9,9 +9,11 @@ exports[`MainContainer renders correctly 1`] = `
   >
     <input
       className="input small-container"
+      onChange={[Function]}
       onKeyDown={[Function]}
       placeholder="What needs to be done?"
       type="text"
+      value=""
     />
     <div>
       <div

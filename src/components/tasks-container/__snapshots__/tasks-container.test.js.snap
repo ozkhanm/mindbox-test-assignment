@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TaskContainer renders correctly 1`] = `
+exports[`TasksContainer renders correctly 1`] = `
 <div>
   <div
     className="task-container small-container"

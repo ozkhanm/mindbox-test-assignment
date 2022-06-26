@@ -387,6 +387,7 @@
   .input {
     width: 100%;
     height: 46px;
+    padding-right: 15px;
 
     box-sizing: border-box;
     border-top-right-radius: 2px;

@@ -4,7 +4,7 @@ import TasksContainer from "../tasks-container/TasksContainer";
 import TasksControlPanel from "../tasks-control-panel/TasksControlPanel";
 
 const Form = () => {
-    const [activeFilterName, setActiveFilterName] = useState(`all`);
+    const [activeFilterName, setActiveFilterName] = useState("all");
     const [tasks, setTasks] = useState([
         {
             text: "Тестовое задание",
@@ -22,43 +22,45 @@ const Form = () => {
             id: 2
         },
     ]);
-    
+    const [input, setInput] = useState("");
+
     useEffect(() => {
         setTasks(tasks);
-    });
+    }, [tasks]);
 
-    const taskFinishButtonClickHandler = (id) => {
-        setTasks((prevTasks) => {
-            const updatedTasks = prevTasks.slice();
-            const index = updatedTasks.findIndex((it) => it.id === id);
-
-            updatedTasks[index].isFinished = !updatedTasks[index].isFinished;
-
-            return updatedTasks;
-        });
+    const inputChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(evt.target.value);
     };
 
-    const filterButtonClickHandler = (evt) => {
+    const taskFinishButtonClickHandler = (id: number) => {
+        const updatedTasks = tasks.slice();
+        const index = updatedTasks.findIndex((it) => it.id === id);
+
+        updatedTasks[index].isFinished = !updatedTasks[index].isFinished;
+        setTasks(updatedTasks);
+    };
+
+    const filterButtonClickHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const filterName = evt.target.value;
 
         switch (filterName) {
-            case `all`:
-                setActiveFilterName(`all`);
+            case "all":
+                setActiveFilterName("all");
 
                 break;
 
-            case `active`:
-                setActiveFilterName(`active`);
+            case "active":
+                setActiveFilterName("active");
 
                 break;
 
-            case `completed`:
-                setActiveFilterName(`completed`);
+            case "completed":
+                setActiveFilterName("completed");
 
                 break;
 
             default:
-                setActiveFilterName(`all`);
+                setActiveFilterName("all");
         };
     };
 
@@ -66,20 +68,19 @@ const Form = () => {
         setTasks(tasks.filter((it) => it.isFinished !== true));
     };
 
-    const taskSubmitButtonClickHandler = (evt) => {
-        const taskText = evt.target.value;
+    const taskSubmitButtonClickHandler = (evt: React.KeyboardEvent<HTMLInputElement>) => {
         const ENTER_BUTTON_KEYCODE = 13;
 
-        if ((evt.keyCode === ENTER_BUTTON_KEYCODE) && (taskText.length !== 0)) {
+        if ((evt.keyCode === ENTER_BUTTON_KEYCODE) && (input.length !== 0)) {
             const maxTaskId = Math.max.apply(null, tasks.map((it) => it.id)) ^ 0;
             const newTask = {
-                text: taskText,
+                text: input,
                 isFinished: false,
                 id: maxTaskId + 1
             };
 
             setTasks(prevTasks => [...prevTasks, newTask]);
-            evt.target.value = ``;
+            setInput("");
         }
     };
 
@@ -91,15 +92,15 @@ const Form = () => {
         return acc;
     }, 0);
 
-    const getTasks = (filterName) => {
+    const getTasks = (filterName: string) => {
         switch (filterName) {
-            case `all`:
+            case "all":
                 return tasks;
 
-            case `active`:
+            case "active":
                 return tasks.filter((it) => it.isFinished !== true);
 
-            case `completed`:
+            case "completed":
                 return tasks.filter((it) => it.isFinished === true);
 
             default:
@@ -109,13 +110,11 @@ const Form = () => {
     
     return (
         <div className="input-wrapper">
-            <input className="input small-container" type="text" placeholder="What needs to be done?" onKeyDown={taskSubmitButtonClickHandler}/>
-            <TasksContainer tasks={getTasks(activeFilterName)}
-                activeTasks={activeTasks} 
-                activeFilterName={activeFilterName} 
-                taskFinishButtonClickHandler={taskFinishButtonClickHandler} 
-                filterButtonClickHandler={filterButtonClickHandler}
-                clearCompletedButtonClickHandler={clearCompletedButtonClickHandler} />
+            <input className="input small-container" type="text" placeholder="What needs to be done?" 
+            value={input}
+            onKeyDown={taskSubmitButtonClickHandler}
+            onChange={inputChangeHandler} />
+            <TasksContainer tasks={getTasks(activeFilterName)} taskFinishButtonClickHandler={taskFinishButtonClickHandler} />
             <TasksControlPanel tasksNumber={activeTasks} 
                 activeFilterName={activeFilterName} 
                 filterButtonClickHandler={filterButtonClickHandler}
