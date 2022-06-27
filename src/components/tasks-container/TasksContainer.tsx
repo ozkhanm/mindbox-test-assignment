@@ -1,25 +1,22 @@
 import React from "react";
+
 import Task from "../task/Task";
 
-interface TaskType {
-    text: string;
-    isFinished: boolean;
-    id: number;
-};
+import { ITask } from "../../types";
 
-interface TasksContainerTypes {
-    tasks: TaskType[];
+interface TasksContainerProps {
+    tasks: ITask[];
     taskFinishButtonClickHandler: (id: number) => void;
 };
 
-const TasksContainer: React.FC<TasksContainerTypes> = ({tasks, taskFinishButtonClickHandler}) => {
+const TasksContainer: React.FC<TasksContainerProps> = ({tasks, taskFinishButtonClickHandler}) => {
     return (
         <div>
-            {tasks.map((it: TaskType) => <Task key={it.id} 
+            {tasks.map((it: ITask): React.ReactNode => <Task key={it.id} 
                 text={it.text} 
-                taskStatus={it.isFinished} 
-                taskFinishButtonClickHandler={taskFinishButtonClickHandler} 
-                id={it.id} />)}
+                isFinished={it.isFinished}
+                id={it.id} 
+                taskFinishButtonClickHandler={taskFinishButtonClickHandler} />)}
         </div>
     );
 };

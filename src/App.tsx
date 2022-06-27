@@ -1,7 +1,9 @@
+import React from "react";
+
 import PageHeader from "./components/page-header/PageHeader";
 import MainContainer from "./components/main-container/MainContainer";
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <>
             <PageHeader />

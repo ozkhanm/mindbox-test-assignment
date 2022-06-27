@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import TasksContainer from "../tasks-container/TasksContainer";
 import TasksControlPanel from "../tasks-control-panel/TasksControlPanel";
 
-const Form = () => {
-    const [activeFilterName, setActiveFilterName] = useState("all");
-    const [tasks, setTasks] = useState([
+import { FilterName, ITask } from "../../types";
+
+const Form: React.FC = () => {
+    const [activeFilterName, setActiveFilterName] = useState<string>(FilterName.ALL);
+    const [tasks, setTasks] = useState<ITask[]>([
         {
             text: "Тестовое задание",
             isFinished: false,
@@ -22,58 +24,56 @@ const Form = () => {
             id: 2
         },
     ]);
-    const [input, setInput] = useState("");
+    const [input, setInput] = useState<string>("");
 
     useEffect(() => {
         setTasks(tasks);
     }, [tasks]);
 
-    const inputChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const inputChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>): void => {
         setInput(evt.target.value);
     };
 
-    const taskFinishButtonClickHandler = (id: number) => {
-        const updatedTasks = tasks.slice();
-        const index = updatedTasks.findIndex((it) => it.id === id);
+    const taskFinishButtonClickHandler = (id: number): void => {
+        const updatedTasks: ITask[] = tasks.slice();
+        const index: number = updatedTasks.findIndex((it: ITask) => it.id === id);
 
         updatedTasks[index].isFinished = !updatedTasks[index].isFinished;
         setTasks(updatedTasks);
     };
 
-    const filterButtonClickHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        const filterName = evt.target.value;
+    const filterButtonClickHandler = (evt: React.ChangeEvent<HTMLInputElement>): void => {
+        const filterName: string = evt.target.value;
 
         switch (filterName) {
-            case "all":
-                setActiveFilterName("all");
+            case FilterName.ALL:
+                setActiveFilterName(FilterName.ALL);
 
                 break;
 
-            case "active":
-                setActiveFilterName("active");
+            case FilterName.ACTIVE:
+                setActiveFilterName(FilterName.ACTIVE);
 
                 break;
 
-            case "completed":
-                setActiveFilterName("completed");
+            case FilterName.COMPLETED:
+                setActiveFilterName(FilterName.COMPLETED);
 
                 break;
 
             default:
-                setActiveFilterName("all");
+                setActiveFilterName(FilterName.ALL);
         };
     };
 
-    const clearCompletedButtonClickHandler = () => {
-        setTasks(tasks.filter((it) => it.isFinished !== true));
+    const clearCompletedButtonClickHandler = (): void => {
+        setTasks(tasks.filter((it: ITask) => it.isFinished !== true));
     };
 
-    const taskSubmitButtonClickHandler = (evt: React.KeyboardEvent<HTMLInputElement>) => {
-        const ENTER_BUTTON_KEYCODE = 13;
-
-        if ((evt.keyCode === ENTER_BUTTON_KEYCODE) && (input.length !== 0)) {
-            const maxTaskId = Math.max.apply(null, tasks.map((it) => it.id)) ^ 0;
-            const newTask = {
+    const taskSubmitButtonClickHandler = (evt: React.KeyboardEvent<HTMLInputElement>): void => {
+        if ((evt.key === "Enter") && (input.length !== 0)) {
+            const maxTaskId: number = Math.max.apply(null, tasks.map((it: ITask) => it.id)) ^ 0;
+            const newTask: ITask = {
                 text: input,
                 isFinished: false,
                 id: maxTaskId + 1
@@ -84,7 +84,7 @@ const Form = () => {
         }
     };
 
-    const activeTasks = tasks.reduce((acc, nextValue) => {
+    const activeTasks: number = tasks.reduce((acc: number, nextValue: ITask): number => {
         if (nextValue.isFinished === false) {
             acc += 1;
         }
@@ -92,16 +92,16 @@ const Form = () => {
         return acc;
     }, 0);
 
-    const getTasks = (filterName: string) => {
+    const getTasks = (filterName: string): ITask[] => {
         switch (filterName) {
-            case "all":
+            case FilterName.ALL:
                 return tasks;
 
-            case "active":
-                return tasks.filter((it) => it.isFinished !== true);
+            case FilterName.ACTIVE:
+                return tasks.filter((it: ITask) => it.isFinished !== true);
 
-            case "completed":
-                return tasks.filter((it) => it.isFinished === true);
+            case FilterName.COMPLETED:
+                return tasks.filter((it: ITask) => it.isFinished === true);
 
             default:
                 return tasks;
